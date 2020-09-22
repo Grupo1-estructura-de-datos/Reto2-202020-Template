@@ -43,13 +43,16 @@ recae sobre el controlador.
 # ___________________________________________________
 def f1(productora):
     if ndatos>1:
-        tupla=m.efeuno(productora,DirectorioMapa["PsXComDePro"])
+        LlavesCriteriosAdicionales = ["Número de peliculas: ","Promedio de peliculas: "]
+        tupla=m.efe12(productora,DirectorioMapa["PsXComDePro"],LlavesCriteriosAdicionales)
         return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
-def f2():
+def f2(director):
     if ndatos>1:
-        pass
+        LlavesCriteriosAdicionales = ["Número de peliculas: ","Promedio de peliculas: "]
+        tupla=m.efe12(director,DirectorioMapa["PsXNomDeDir"],LlavesCriteriosAdicionales)
+        return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
 def f3():

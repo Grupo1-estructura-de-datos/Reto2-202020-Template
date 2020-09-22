@@ -140,7 +140,7 @@ def loadMovies (indicador,MUTE=False):
 # ==============================
 # Funciones de consulta
 # ==============================
-def efeuno(productora,PsXComDePro):
+def efe12(productora,PsXComDePro,LlavesCriteriosAdicionales):
     n = 0
     ColaPeliculas = qe.newQueue()
     ColaAdicionales = qe.newQueue()
@@ -155,8 +155,8 @@ def efeuno(productora,PsXComDePro):
         else: 
             Centinela = False
     if len(Puntajes)!=0:
-        qe.enqueue(ColaAdicionales,["Número de peliculas: ",qe.size(ColaPeliculas)])
-        qe.enqueue(ColaAdicionales,["Promedio de peliculas: ",sum(Puntajes)/len(Puntajes)])
+        qe.enqueue(ColaAdicionales,[LlavesCriteriosAdicionales[0],qe.size(ColaPeliculas)])
+        qe.enqueue(ColaAdicionales,[LlavesCriteriosAdicionales[1],sum(Puntajes)/len(Puntajes)])
         return (ColaPeliculas   , ColaAdicionales)
     else: 
         qe.enqueue(ColaAdicionales,qe.size(ColaPeliculas))
