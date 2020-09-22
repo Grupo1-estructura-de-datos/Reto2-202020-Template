@@ -24,8 +24,9 @@ import sys
 import config
 from DISClib.ADT import list as lt
 from DISClib.DataStructures import listiterator as it
-from App import controller
 assert config
+from DISClib.ADT import queue as qe 
+
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -38,9 +39,7 @@ operación seleccionada.
 #  Ruta a los archivos
 # ___________________________________________________
 
-
-
-
+from App import controller as c
 
 # ___________________________________________________
 #  Funciones para imprimir la inforamación de
@@ -48,8 +47,60 @@ operación seleccionada.
 #  el controlador.
 # ___________________________________________________
 
-
+def ImprimirEnConsola(cola, DatosAdicionales=None):
+    Centinela = True
+    print("-"*100)
+    while Centinela==True:
+        print("", end=" "*10)
+        print("•" + qe.dequeue(cola))
+        if qe.isEmpty(cola)==True: Centinela=False
+    print("-"*100)
+    if DatosAdicionales!=None:
+        if qe.isEmpty(DatosAdicionales)==False:
+            CentinelaAdicionales = True
+            while CentinelaAdicionales==True:
+                dato = qe.dequeue(DatosAdicionales)
+                print(str(dato[0])+str(dato[1]))
+                if qe.isEmpty(DatosAdicionales)==True: CentinelaAdicionales=False
+    else: 
+        print("No se encontraron datos con este criterio")
 
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
+
+def printMenu():
+    """
+    Imprime el menu de opciones
+    """
+    print("\nBienvenido")
+    print("1- Descubrir productoras de cine")
+    print("2- Conocer a un director")
+    print("3- Conocer a un actor")
+    print("4- Entender un género cinematográfico")
+    print("5- Encontrar películas por país")
+    print("0- Salir")
+
+c.fs()
+print("\n"*2)
+
+while True:
+    try:
+        printMenu()
+        n = int(input())
+        if n==0: break
+        if n==1: 
+            print("\n"*2+"==========================================================")
+            productora=input("Por favor ingrese el nombre de la compañía de producción: ")
+            tupla = c.f1(productora)
+            print("\n" + "A continuacion información de la productora de cine")
+            print("\n" + "Peliculas de la productora: ")
+            ImprimirEnConsola(tupla[0],tupla[1])
+
+        if n==2: c.f2()
+        if n==3: c.f3()
+        if n==4: c.f4()
+        if n==5: c.f5()
+
+    except: print("ocurrió un error, asegurese de que los datos están correctos")
+    

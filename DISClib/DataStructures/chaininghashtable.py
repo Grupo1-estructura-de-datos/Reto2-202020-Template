@@ -63,7 +63,7 @@ def newMap(numelements, prime, loadfactor, cmpfunction):
     shift = rd.randint(1, prime)
     table = lt.newList('ARRAY_LIST', cmpfunction)
     for _ in range(capacity):
-        bucket = lt.newList('SINGLE_LINKED', cmpfunction)
+        bucket = lt.newList('ARRAY_LIST', cmpfunction)
         lt.addLast(table, bucket)
     hashtable = {'prime': prime,
                  'capacity': capacity,
@@ -227,7 +227,7 @@ def valueSet(map):
     Raises:
         Exception
     """
-    ltset = lt.newList('SINGLE_LINKED', map['comparefunction'])
+    ltset = lt.newList('ARRAY_LIST', map['comparefunction'])
     for pos in range(lt.size(map['table'])):
         bucket = lt.getElement(map['table'], pos+1)
         for element in range(lt.size(bucket)):
