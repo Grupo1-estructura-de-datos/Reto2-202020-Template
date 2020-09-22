@@ -32,7 +32,7 @@ assert config
 """
 
 
-def newQueue(datastructure='SINGLE_LINKED'):
+def newQueue(datastructure='ARRAY_LIST'):
     """ Crea una cola vacia basada en una lista.
     Args:
         datastructure:  Indica el tipo de estructura de datos a utilizar
