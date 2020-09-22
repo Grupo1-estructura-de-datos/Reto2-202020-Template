@@ -90,14 +90,19 @@ while True:
         n = int(input())
         if n==0: break
         if n==1: 
-            print("\n"*2+"==========================================================")
+            print("\n"*2+"="*100)
             productora=input("Por favor ingrese el nombre de la compañía de producción: ")
             tupla = c.f1(productora)
             print("\n" + "A continuacion información de la productora de cine")
             print("\n" + "Peliculas de la productora: ")
             ImprimirEnConsola(tupla[0],tupla[1])
-
-        if n==2: c.f2()
+        if n==2: 
+            print("\n"*2+"="*100)
+            director=input("Por favor ingrese el nombre del director: ")
+            tupla = c.f2(director)
+            print("\n" + "A continuacion información del trabajo del director")
+            print("\n" + "Peliculas del director: ")
+            ImprimirEnConsola(tupla[0],tupla[1])
         if n==3: c.f3()
         if n==4: c.f4()
         if n==5: c.f5()
