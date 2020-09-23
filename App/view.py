@@ -48,13 +48,15 @@ from App import controller as c
 # ___________________________________________________
 
 def ImprimirEnConsola(cola, DatosAdicionales=None):
-    Centinela = True
-    print("-"*100)
-    while Centinela==True:
-        print("", end=" "*10)
-        print("•" + qe.dequeue(cola))
-        if qe.isEmpty(cola)==True: Centinela=False
-    print("-"*100)
+    if qe.isEmpty(cola)==False: 
+        Centinela = True
+        print("-"*100)
+        while Centinela==True:
+            print("", end=" "*10)
+            print("•" + qe.dequeue(cola))
+            if qe.isEmpty(cola)==True: Centinela=False
+        print("-"*100)
+    else: print("No se encontrar peliculas para el criterio")
     if DatosAdicionales!=None:
         if qe.isEmpty(DatosAdicionales)==False:
             CentinelaAdicionales = True
@@ -62,8 +64,6 @@ def ImprimirEnConsola(cola, DatosAdicionales=None):
                 dato = qe.dequeue(DatosAdicionales)
                 print(str(dato[0])+str(dato[1]))
                 if qe.isEmpty(DatosAdicionales)==True: CentinelaAdicionales=False
-    else: 
-        print("No se encontraron datos con este criterio")
 
 # ___________________________________________________
 #  Menu principal
@@ -105,7 +105,13 @@ while True:
             ImprimirEnConsola(tupla[0],tupla[1])
         if n==3: c.f3()
         if n==4: c.f4()
-        if n==5: c.f5()
+        if n==5:
+            print("\n"*2+"="*100)
+            país=input("Por favor ingrese el nombre del país: ")
+            tupla = c.f5(país)
+            print("\n" + "A continuacion información de las peliculas del país, con su respectivo director")
+            print("\n" + "Peliculas del director: ")
+            ImprimirEnConsola(tupla[0],tupla[1])
 
     except: print("ocurrió un error, asegurese de que los datos están correctos")
     

@@ -65,9 +65,10 @@ def f4():
         pass
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
-def f5():
+def f5(país):
     if ndatos>1:
-        pass
+        tupla=m.efe5(país,DirectorioMapa["PsXPais____"])
+        return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
 # ___________________________________________________
@@ -91,5 +92,5 @@ def fs():
     lstmoviesdetails = m.loadMovies("details",True)[0]
     Directorio_TAD_Lista = m.CrearDirectorioLista(lstmoviescasting,lstmoviesdetails)
     primo=Lprimos[bisect.bisect_right(Lprimos, ndatos)]
-    parametros=[primo,100999001,'CHAINING',1]
+    parametros=[primo,100999001,'CHAINING',2]
     DirectorioMapa = m.CrearDirectorioMapa(parametros,CriterioLlaves,Directorio_TAD_Lista)

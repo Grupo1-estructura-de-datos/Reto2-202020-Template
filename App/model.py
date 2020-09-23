@@ -61,54 +61,61 @@ def CrearDirectorioMapa(parametros,CriterioLlaves,Directorio_TAD_Lista):
                       'PsXNomDeAct': mp.newMap(parametros[0]*5,parametros[1],parametros[2],parametros[3],CompararCriterios),
                       'PsXGenCinem': mp.newMap(parametros[0]*2,parametros[1],parametros[2],parametros[3],CompararCriterios),
                       'PsXPais____': mp.newMap(parametros[0]*1,parametros[1],parametros[2],parametros[3],CompararCriterios)}
+    DirectorioLlavesDirectorioMapa = {'PsXComDePro': mp.newMap(2011,100999001,'CHAINING',2,CompararCriterios ), #aprox 2011 productoras
+                                      'PsXNomDeDir': mp.newMap(10007,100999001,'CHAINING',2,CompararCriterios), #aprox 10007 directores
+                                      'PsXNomDeAct': mp.newMap(32233,100999001,'CHAINING',2,CompararCriterios), #aprox 32233 actores
+                                      'PsXGenCinem': mp.newMap(101,100999001,'CHAINING',2,CompararCriterios  ), #aprox 101 generos
+                                      'PsXPais____': mp.newMap(239,100999001,'CHAINING',2,CompararCriterios  )} #aprox 239 paises
     iterable=it.newIterator(Directorio_TAD_Lista)
-    ###########################
+    ####################################################################################################################################
+    k=0######## se puede quitar
     while it.hasNext(iterable):
         pelicula=it.next(iterable)
         #PsXComDePro
-        n=0 
-        Centinela = False 
-        while Centinela == False:
-            if not mp.contains(DirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]]+str(n)):
-                mp.put(DirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]]+str(n),pelicula)
-                Centinela = True
-            else: n+=1
+        if not mp.contains(DirectorioLlavesDirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]]):
+            mp.put(DirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]]+"0" ,pelicula)
+            mp.put(DirectorioLlavesDirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]],0)
+        else: 
+            ValorNuevo = mp.get(DirectorioLlavesDirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]])['value'] + 1
+            mp.put(DirectorioLlavesDirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]],ValorNuevo)
+            mp.put(DirectorioMapa['PsXComDePro'],pelicula[CriterioLlaves[0]]+str(ValorNuevo),pelicula)
         #PsXNomDeDir
-        n=0 
-        Centinela = False 
-        while Centinela == False:
-            if not mp.contains(DirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]]+str(n)):
-                mp.put(DirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]]+str(n),pelicula)
-                Centinela = True
-            else: n+=1
-        #PsXNomDeAct
+        if not mp.contains(DirectorioLlavesDirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]]):
+            mp.put(DirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]]+"0" ,pelicula)
+            mp.put(DirectorioLlavesDirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]],0)
+        else: 
+            ValorNuevo = mp.get(DirectorioLlavesDirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]])['value'] + 1
+            mp.put(DirectorioLlavesDirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]],ValorNuevo)
+            mp.put(DirectorioMapa['PsXNomDeDir'],pelicula[CriterioLlaves[1]]+str(ValorNuevo),pelicula)
         CriterioLlavesInceptionActores = ["actor1_name","actor2_name","actor3_name","actor4_name","actor5_name"]
         for i in CriterioLlavesInceptionActores:
-            n=0 
-            Centinela = False
-            while Centinela == False:
-                if not mp.contains(DirectorioMapa['PsXNomDeAct'],pelicula[i]+str(n)):
-                    mp.put(DirectorioMapa['PsXNomDeAct'],pelicula[i]+str(n),pelicula)
-                    Centinela = True
-                else: n+=1
+            if not mp.contains(DirectorioLlavesDirectorioMapa['PsXNomDeAct'],pelicula[i]):
+                mp.put(DirectorioMapa['PsXNomDeAct'],pelicula[i]+"0" ,pelicula)
+                mp.put(DirectorioLlavesDirectorioMapa['PsXNomDeAct'],pelicula[i],0)
+            else: 
+                ValorNuevo = mp.get(DirectorioLlavesDirectorioMapa['PsXNomDeAct'],pelicula[i])['value'] + 1
+                mp.put(DirectorioLlavesDirectorioMapa['PsXNomDeAct'],pelicula[i],ValorNuevo)
+                mp.put(DirectorioMapa['PsXNomDeAct'],pelicula[i]+str(ValorNuevo),pelicula)
         #PsXGenCinem
         CriterioLlavesInceptionGeneros = pelicula[CriterioLlaves[3]].split("|")
         for i in CriterioLlavesInceptionGeneros:
-            n=0 
-            Centinela = False 
-            while Centinela == False:
-                if not mp.contains(DirectorioMapa['PsXGenCinem'],i+str(n)):
-                    mp.put(DirectorioMapa['PsXGenCinem'],i+str(n),pelicula)
-                    Centinela = True
-                else: n+=1
+            if not mp.contains(DirectorioLlavesDirectorioMapa['PsXGenCinem'],i):
+                mp.put(DirectorioMapa['PsXGenCinem'],i+"0" ,pelicula)
+                mp.put(DirectorioLlavesDirectorioMapa['PsXGenCinem'],i,0)
+            else: 
+                ValorNuevo = mp.get(DirectorioLlavesDirectorioMapa['PsXGenCinem'],i)['value'] + 1
+                mp.put(DirectorioLlavesDirectorioMapa['PsXGenCinem'],i,ValorNuevo)
+                mp.put(DirectorioMapa['PsXGenCinem'],i+str(ValorNuevo),pelicula)
         #PsXPais____
-        n=0 
-        Centinela = False 
-        while Centinela == False:
-            if not mp.contains(DirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]]+str(n)):
-                mp.put(DirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]]+str(n),pelicula)
-                Centinela = True
-            else: n+=1
+        if not mp.contains(DirectorioLlavesDirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]]):
+            mp.put(DirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]]+"0" ,pelicula)
+            mp.put(DirectorioLlavesDirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]],0)
+        else: 
+            ValorNuevo = mp.get(DirectorioLlavesDirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]])['value'] + 1
+            mp.put(DirectorioLlavesDirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]],ValorNuevo)
+            mp.put(DirectorioMapa['PsXPais____'],pelicula[CriterioLlaves[4]]+str(ValorNuevo),pelicula)
+        if k%10000==0 and k!=0: print(k)##### se puede quitar
+        k+=1##### se puede quitar
     return DirectorioMapa
 
 # ==============================================
@@ -130,9 +137,9 @@ def loadCSVFile (file, cmpfunction):
 
 def loadMovies (indicador,MUTE=False):
     if indicador=="details":
-        lst = loadCSVFile("themoviesdb/detalles100.csv",compareRecordIds)
+        lst = loadCSVFile("themoviesdb/SmallMoviesDetailsCleaned.csv",compareRecordIds)
     elif indicador=="casting": 
-        lst = loadCSVFile("themoviesdb/casting100.csv",compareRecordIds)
+        lst = loadCSVFile("themoviesdb/MoviesCastingRaw-small.csv",compareRecordIds)
     if MUTE==False:
         print("Datos cargados, " + str(lt.size(lst)) + " elementos cargados")
     return [lst,lt.size(lst)]
@@ -162,6 +169,19 @@ def efe12(productora,PsXComDePro,LlavesCriteriosAdicionales):
         qe.enqueue(ColaAdicionales,qe.size(ColaPeliculas))
         qe.enqueue(ColaAdicionales,0)
         return (ColaPeliculas   , ColaAdicionales)
+
+def efe5(país,PsXPais____):
+    n = 0
+    ColaPeliculas = qe.newQueue()
+    Centinela=True
+    while Centinela==True:
+        if mp.contains(PsXPais____,país+str(n)):
+            pelicula = mp.get(PsXPais____,país+str(n))["value"]
+            qe.enqueue(ColaPeliculas,pelicula["title"]+ " (" +pelicula["release_date"][-4:] + ") " + "Dirigida por: " + pelicula["director_name"])
+            n=n+1
+        else: 
+            Centinela = False
+    return (ColaPeliculas   , None)
 
 # ==============================
 # Funciones de Comparacion
