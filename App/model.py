@@ -182,28 +182,7 @@ def efe5(país,PsXPais____):
         else: 
             Centinela = False
     return (ColaPeliculas   , None)
-def efe4(genero,PsXGenCinem):
-    n = 0
-    pel = qe.newQueue()
-    noice = qe.newQueue()
-    Punt = []
-    C = True
-    while C:
-        if mp.contains(PsXGenCinem,genero+str(n)):
-            aux = mp.get(PsXGenCinem,genero+str(n))["value"]
-            qe.enqueue(pel,aux["tittle"] + " (" + aux["release_date"][-4:] + ")")
-            Punt.append(float(aux["vote_average"]))
-            n+=1
-        else:
-            C = False
-    if len(Punt) !=0:
-        qe.enqueue(noice,["Numero de Peliculas:",qe.size(pel)])
-        qe.enqueue(noice,["Promedio de votos:",sum(Punt)/len(Punt)])
-    else:
-        qe.enqueue(noice,0)
-        qe.enqueue(noice,0)
-        qe.enqueue(noice, "No hay peliculas de ese género")
-    return (pel,noice)
+
 def efe3(actor,PsXNomDeAct,LlavesCriteriosAdicionales):
     n = 0
     ColaActores = qe.newQueue()
