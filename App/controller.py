@@ -62,9 +62,10 @@ def f3(actor):
         return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
-def f4():
+def f4(genero):
     if ndatos>1:
-        pass
+        tupla = m.efe4(genero,DirectorioMapa['PsXGenCinem'])
+        return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
 def f5(país):

@@ -111,6 +111,12 @@ while True:
             print("\n" + "Peliculas del actor: ")         
             ImprimirEnConsola(tupla[0],tupla[1])
         if n==4: c.f4()
+            print("\n"*2+"="*100)
+            genero=input("Por favor ingrese el nombre del género: ")
+            tupla = c.f4(genero)
+            print("\n" + "A continuacion información del género ")
+            print("\n" + "Peliculas del género: ")         
+            ImprimirEnConsola(tupla[0],tupla[1])
         if n==5:
             print("\n"*2+"="*100)
             país=input("Por favor ingrese el nombre del país: ")
