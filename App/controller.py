@@ -55,9 +55,11 @@ def f2(director):
         return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
-def f3():
+def f3(actor):
     if ndatos>1:
-        pass
+        LlavesCriteriosAdicionales = ["Número de peliculas: ","Promedio de peliculas: ", "Director con más colaboraciones: "]
+        tupla=m.efe3(actor,DirectorioMapa['PsXNomDeAct'],LlavesCriteriosAdicionales)
+        return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 
 def f4():

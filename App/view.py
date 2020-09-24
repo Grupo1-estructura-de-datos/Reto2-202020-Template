@@ -103,7 +103,13 @@ while True:
             print("\n" + "A continuacion información del trabajo del director")
             print("\n" + "Peliculas del director: ")
             ImprimirEnConsola(tupla[0],tupla[1])
-        if n==3: c.f3()
+        if n==3:
+            print("\n"*2+"="*100)
+            actor=input("Por favor ingrese el nombre del actor: ")
+            tupla = c.f3(actor)
+            print("\n" + "A continuacion información del trabajo del actor")
+            print("\n" + "Peliculas del actor: ")         
+            ImprimirEnConsola(tupla[0],tupla[1])
         if n==4: c.f4()
         if n==5:
             print("\n"*2+"="*100)
@@ -112,6 +118,4 @@ while True:
             print("\n" + "A continuacion información de las peliculas del país, con su respectivo director")
             print("\n" + "Peliculas del director: ")
             ImprimirEnConsola(tupla[0],tupla[1])
-
-    except: print("ocurrió un error, asegurese de que los datos están correctos")
-    
+    except: print("Hubo un error")

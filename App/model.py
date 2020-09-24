@@ -182,7 +182,33 @@ def efe5(país,PsXPais____):
         else: 
             Centinela = False
     return (ColaPeliculas   , None)
-
+def efe3(actor,PsXNomDeAct,LlavesCriteriosAdicionales):
+    n = 0
+    ColaActores = qe.newQueue()
+    ColaAdicionales = qe.newQueue()
+    Puntajes = []
+    Directores = lt.newList()
+    Centinela=True
+    while Centinela==True:
+        if mp.contains(PsXNomDeAct,actor+str(n)):
+            pelicula = mp.get(PsXNomDeAct,actor+str(n))["value"]
+            qe.enqueue(ColaActores,pelicula["title"]+ " (" + pelicula["release_date"][-4:] + ")")
+            Puntajes.append(float(pelicula["vote_average"]))
+            lt.addLast(Directores,pelicula["director_name"])
+            n=n+1
+        else: 
+            Centinela = False
+    if len(Puntajes)!=0:
+        qe.enqueue(ColaAdicionales,[LlavesCriteriosAdicionales[0],qe.size(ColaActores)])
+        qe.enqueue(ColaAdicionales,[LlavesCriteriosAdicionales[1],sum(Puntajes)/len(Puntajes)])
+        mD = statistics.mode(Directores["elements"])[0][0]
+        qe.enqueue(ColaAdicionales,[LlavesCriteriosAdicionales[2],mD])
+        return (ColaActores   , ColaAdicionales)
+    else: 
+        qe.enqueue(ColaAdicionales,0)
+        qe.enqueue(ColaAdicionales,0)
+        qe.enqueue(ColaAdicionales, "No hay directores con colaboraciones")
+        return (ColaActores   , ColaAdicionales)
 # ==============================
 # Funciones de Comparacion
 # ==============================
