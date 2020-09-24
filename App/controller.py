@@ -65,7 +65,7 @@ def f3(actor):
 def f4(genero):
     if ndatos>1:
         LlavesCriteriosAdicionales = ["Número de peliculas: ","Promedio de peliculas: "]
-        tupla=m.efe12(genero,DirectorioMapa["PsXNomDeDir"],LlavesCriteriosAdicionales)
+        tupla=m.efe12(genero,DirectorioMapa["PsXGenCinem"],LlavesCriteriosAdicionales)
         return tupla
     else: print("No se pudo hacer la operación, asegurese de cargar los datos primero")
 

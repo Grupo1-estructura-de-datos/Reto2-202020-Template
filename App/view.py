@@ -122,6 +122,6 @@ while True:
             país=input("Por favor ingrese el nombre del país: ")
             tupla = c.f5(país)
             print("\n" + "A continuacion información de las peliculas del país, con su respectivo director")
-            print("\n" + "Peliculas del director: ")
+            print("\n" + "Peliculas del país: ")
             ImprimirEnConsola(tupla[0],tupla[1])
     except: print("Hubo un error")
